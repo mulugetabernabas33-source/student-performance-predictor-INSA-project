@@ -50,12 +50,9 @@ A multipage Streamlit app (`app/`) turns the model into an actual tool rather th
 - **Model Performance** — cross-validation leaderboards, ROC curves, confusion matrices, and the Scenario A vs. B comparison with an explanation of the leakage decision.
 - **About** — project story, dataset citation, a methodology timeline, tech stack, and a limitations/ethics section.
 
-The Home page opens on a dark, gradient hero ("Know which students need support — before the
-first grade exists") over softly animated blurred shapes, with a "Try the predictor" button and
-four glassmorphic, count-up stat cards underneath. The Predictor page splits its form into four
-bordered cards (School & demographics, Academic, Family, Lifestyle); submitting it shows a
-Plotly probability gauge, a colored PASS / AT-RISK badge, and a green/red SHAP bar chart
-explaining the top factors behind the prediction.
+![Home page](reports/figures/app_home.png)
+
+![Predictor result](reports/figures/app_predictor.png)
 
 Run it locally with `streamlit run app/app.py` (see [Setup and run](#setup-and-run) below).
 
