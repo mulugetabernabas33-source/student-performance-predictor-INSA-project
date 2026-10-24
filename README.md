@@ -99,8 +99,8 @@ Requires Python 3.10+.
 
 ```bash
 # Clone and enter the project
-git clone <this-repo-url>
-cd student-performance-predictor
+git clone https://github.com/mulugetabernabas33-source/student-performance-predictor-INSA-project.git
+cd student-performance-predictor-INSA-project
 
 # Create and activate a virtual environment
 python -m venv venv
