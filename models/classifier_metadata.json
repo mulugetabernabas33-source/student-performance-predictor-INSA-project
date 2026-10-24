@@ -1,0 +1,22 @@
+{
+  "feature_set": "early_warning",
+  "best_model": "random_forest",
+  "cv_roc_auc_mean": 0.7291786300607888,
+  "leaderboard": [
+    {
+      "model": "random_forest",
+      "cv_roc_auc_mean": 0.7291786300607888,
+      "cv_roc_auc_std": 0.08069408952509546
+    },
+    {
+      "model": "logistic_regression",
+      "cv_roc_auc_mean": 0.7123299136811378,
+      "cv_roc_auc_std": 0.09524455253516576
+    },
+    {
+      "model": "gradient_boosting",
+      "cv_roc_auc_mean": 0.6663149773544703,
+      "cv_roc_auc_std": 0.05332301476339689
+    }
+  ]
+}

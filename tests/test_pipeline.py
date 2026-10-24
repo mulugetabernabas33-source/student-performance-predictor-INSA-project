@@ -2,6 +2,7 @@
 
 import numpy as np
 
+from src.classify import get_classification_split, train_best_classifier
 from src.data import load_raw_data
 from src.preprocess import clean_data, get_feature_target_split
 from src.train import train_best_model
@@ -33,3 +34,15 @@ def test_model_predicts_valid_output():
     assert predictions.shape == (10,)
     assert np.all(np.isfinite(predictions))
     assert np.all(predictions > -5) and np.all(predictions < 25)
+
+
+def test_classifier_predicts_valid_probabilities():
+    """The pass/fail classifier outputs well-formed probabilities."""
+    df = clean_data(load_raw_data())
+    X_train, X_test, y_train, _ = get_classification_split(df, feature_set="early_warning")
+    pipeline, leaderboard = train_best_classifier(X_train, y_train, feature_set="early_warning", cv=3)
+
+    assert len(leaderboard) == 3
+    proba = pipeline.predict_proba(X_test.head(10))[:, 1]
+    assert proba.shape == (10,)
+    assert np.all((proba >= 0) & (proba <= 1))
