@@ -74,7 +74,10 @@ def get_feature_importance(pipeline: Pipeline) -> pd.DataFrame | None:
         return None
 
     preprocessor = pipeline.named_steps["preprocessor"]
-    feature_names = preprocessor.get_feature_names_out()
+    # Strip the ColumnTransformer's "numeric__"/"categorical__" prefixes for readability.
+    feature_names = [
+        name.split("__", 1)[-1] for name in preprocessor.get_feature_names_out()
+    ]
     importances = model.feature_importances_
 
     return (
