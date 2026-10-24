@@ -86,7 +86,7 @@ for col, step, i in zip(step_cols, steps, range(1, 4)):
     with col:
         st.markdown(
             f"""
-            <div class="card step-card fade-in-up delay-{i}">
+            <div class="card card-gradient-border step-card fade-in-up delay-{i}">
               <div class="step-number">{i}</div>
               <div class="icon-wrap">{svg(step["icon"], 22)}</div>
               <h4 style="margin:0 0 0.4rem;">{step["title"]}</h4>

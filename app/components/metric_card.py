@@ -46,7 +46,7 @@ def animated_stat_row(stats: list[dict]) -> None:
         counter_id = f"stat-{uid}-{i}"
         cards_html.append(
             f"""
-            <div class="card stat-card fade-in-up delay-{min(i + 1, 4)}">
+            <div class="card card-glass stat-card fade-in-up delay-{min(i + 1, 4)}">
               <div class="stat-icon">{svg(s["icon"], 20)}</div>
               <div class="stat-value">
                 <span id="{counter_id}">{s.get("prefix", "")}0{s.get("suffix", "")}</span>
