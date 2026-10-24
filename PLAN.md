@@ -1,5 +1,7 @@
 # Project Plan
 
+**Author:** Bernabas Mulugeta Genanaw (Student ID: CTC-5711-26)
+
 ## Objective
 
 Build an end-to-end, portfolio-quality ML project that predicts student academic performance, with a clear and honest narrative rather than a single headline accuracy number.

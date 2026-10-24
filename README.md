@@ -1,5 +1,7 @@
 # Student Performance Predictor
 
+**Author:** Bernabas Mulugeta Genanaw (Student ID: CTC-5711-26)
+
 A machine learning project that screens for academic risk using demographic, family, and behavioral data, with the goal of flagging at-risk students **before any grades exist** so teachers can intervene early. Built on the UCI [Student Performance](https://archive.ics.uci.edu/dataset/320/student+performance) dataset, the project covers the full pipeline — EDA, preprocessing, model comparison (both regression and direct classification), SHAP-based explainability, evaluation, and a multipage Streamlit web app for interactive predictions.
 
 ## Key results

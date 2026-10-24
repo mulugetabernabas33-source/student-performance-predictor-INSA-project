@@ -133,10 +133,14 @@ with chart_col4:
     st.markdown("##### Correlation heatmap (numeric features)")
     numeric_cols = [c for c in filtered.select_dtypes(include="number").columns if c != "pass"]
     corr = filtered[numeric_cols].corr()
+    # A diverging scale with a white midpoint (e.g. Plotly's default "RdBu")
+    # reads as a large pale/white patch against this app's dark theme, so
+    # the near-zero midpoint is the dark surface color instead of white.
     heat_fig = go.Figure(
         data=go.Heatmap(
             z=corr.values, x=corr.columns, y=corr.columns,
-            colorscale="RdBu", zmid=0, zmin=-1, zmax=1,
+            colorscale=[[0, "#ef4444"], [0.5, "#121a2e"], [1, "#22d3ee"]],
+            zmid=0, zmin=-1, zmax=1,
             hovertemplate="%{x} vs %{y}: %{z:.2f}<extra></extra>",
         )
     )

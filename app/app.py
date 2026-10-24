@@ -22,7 +22,10 @@ st.set_page_config(
 )
 
 pages = [
-    st.Page("pages/home.py", title="Home", icon=":material/home:", default=True, url_path="home"),
+    # No explicit url_path: as the default page it's already served at "/",
+    # and also giving it "/home" creates an ambiguous cold-load route that
+    # briefly flashes a "Page not found" dialog on a hard reload of /home.
+    st.Page("pages/home.py", title="Home", icon=":material/home:", default=True),
     st.Page("pages/predictor.py", title="Predictor", icon=":material/psychology:", url_path="predictor"),
     st.Page("pages/insights.py", title="Insights", icon=":material/bar_chart:", url_path="insights"),
     st.Page(

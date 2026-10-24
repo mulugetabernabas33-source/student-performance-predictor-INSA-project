@@ -17,6 +17,16 @@ from utils.theme import load_theme  # noqa: E402
 
 load_theme()
 
+st.markdown(
+    '<div class="card card-gradient-border" style="display:flex; justify-content:space-between; '
+    'align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">'
+    '<div><strong style="font-size:1.1rem;">Bernabas Mulugeta Genanaw</strong>'
+    '<div style="color:var(--text-muted); font-size:0.88rem; margin-top:0.2rem;">Student ID: CTC-5711-26</div></div>'
+    '<span class="chip">Academic project</span>'
+    "</div>",
+    unsafe_allow_html=True,
+)
+
 section_header.render("About", "The story behind this project", center=False)
 
 st.markdown(

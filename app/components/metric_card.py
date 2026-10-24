@@ -8,53 +8,42 @@ import streamlit as st
 from utils.icons import svg
 
 
-def static_metric_card(icon_name: str, value: str, label: str) -> str:
-    """Build the HTML for a non-animated stat card.
-
-    Args:
-        icon_name: Key into :mod:`app.utils.icons`.
-        value: Pre-formatted value string (e.g. ``"395"``, ``"88.6%"``).
-        label: Caption under the value.
-
-    Returns:
-        An HTML string for the card (caller embeds it in a markdown block).
-    """
-    return f"""
-    <div class="card stat-card">
-      <div class="stat-icon">{svg(icon_name, 20)}</div>
-      <div class="stat-value">{value}</div>
-      <div class="stat-label">{label}</div>
-    </div>
-    """
-
-
 def animated_stat_row(stats: list[dict]) -> None:
     """Render a row of count-up animated stat cards.
 
     Each stat dict supports: ``icon`` (icon key), ``value`` (numeric
     target), ``decimals`` (int, default 0), ``prefix``/``suffix`` (str),
-    and ``label``. Uses ``st.html`` with JavaScript enabled so the counters
-    animate on load; falls back to showing the final value immediately if
-    the viewer prefers reduced motion.
+    and ``label``. The cards (including their SVG icons) are rendered via
+    ``st.markdown`` -- ``st.html``'s sanitizer strips raw ``<svg>`` tags,
+    which would leave the icons blank. A separate script-only ``st.html``
+    call (no HTML to sanitize) drives the count-up animation by id,
+    falling back to the final value immediately for reduced-motion users.
 
     Args:
         stats: List of stat dicts, rendered left-to-right in one row.
     """
     uid = uuid.uuid4().hex[:8]
-    cards_html = []
+    card_chunks = []
     for i, s in enumerate(stats):
         counter_id = f"stat-{uid}-{i}"
-        cards_html.append(
-            f"""
-            <div class="card card-glass stat-card fade-in-up delay-{min(i + 1, 4)}">
-              <div class="stat-icon">{svg(s["icon"], 20)}</div>
-              <div class="stat-value">
-                <span id="{counter_id}">{s.get("prefix", "")}0{s.get("suffix", "")}</span>
-              </div>
-              <div class="stat-label">{s["label"]}</div>
-            </div>
-            """
+        card_chunks.append(
+            f'<div class="card card-glass stat-card fade-in-up delay-{min(i + 1, 4)}">'
+            f'<div class="stat-icon">{svg(s["icon"], 20)}</div>'
+            f'<div class="stat-value"><span id="{counter_id}">'
+            f'{s.get("prefix", "")}0{s.get("suffix", "")}</span></div>'
+            f'<div class="stat-label">{s["label"]}</div>'
+            f"</div>"
         )
+    # Single-line, blank-line-free HTML: a blank line inside an in-progress
+    # raw HTML block makes Streamlit's markdown parser drop out of HTML
+    # mode, which would otherwise leave every card after the first
+    # rendering as literal, unstyled text.
+    grid_html = (
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;">'
+        + "".join(card_chunks)
+        + "</div>"
+    )
+    st.markdown(grid_html, unsafe_allow_html=True)
 
     targets = json.dumps(
         [
@@ -68,12 +57,7 @@ def animated_stat_row(stats: list[dict]) -> None:
             for i, s in enumerate(stats)
         ]
     )
-
-    html = f"""
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;">
-      {''.join(cards_html)}
-    </div>
-    <script>
+    script = f"""<script>
       (function() {{
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const items = {targets};
@@ -96,6 +80,5 @@ def animated_stat_row(stats: list[dict]) -> None:
           requestAnimationFrame(tick);
         }});
       }})();
-    </script>
-    """
-    st.html(html, unsafe_allow_javascript=True)
+    </script>"""
+    st.html(script, unsafe_allow_javascript=True)

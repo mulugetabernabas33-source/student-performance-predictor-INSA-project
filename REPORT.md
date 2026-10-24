@@ -1,5 +1,7 @@
 # Report: Predicting Student Performance
 
+**Author:** Bernabas Mulugeta Genanaw (Student ID: CTC-5711-26)
+
 ## 1. Problem statement
 
 Schools want to identify students at risk of failing early enough to act on it. Most grade-prediction work (including the original study behind this dataset) predicts final grades using **prior period grades** as features — which is accurate, but not actionable at the start of a term, when no grades exist yet.
