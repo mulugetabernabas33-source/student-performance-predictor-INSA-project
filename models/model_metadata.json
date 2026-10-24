@@ -1,0 +1,27 @@
+{
+  "feature_set": "early_warning",
+  "best_model": "random_forest",
+  "cv_r2_mean": 0.2055093252165805,
+  "leaderboard": [
+    {
+      "model": "random_forest",
+      "cv_r2_mean": 0.2055093252165805,
+      "cv_r2_std": 0.14608618929056333
+    },
+    {
+      "model": "gradient_boosting",
+      "cv_r2_mean": 0.1802956094973184,
+      "cv_r2_std": 0.15834026519683034
+    },
+    {
+      "model": "ridge",
+      "cv_r2_mean": -0.0801150355927163,
+      "cv_r2_std": 0.21408165159752016
+    },
+    {
+      "model": "linear_regression",
+      "cv_r2_mean": -0.09238794106516238,
+      "cv_r2_std": 0.2233214732532735
+    }
+  ]
+}
