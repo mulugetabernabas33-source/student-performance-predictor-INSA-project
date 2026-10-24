@@ -19,7 +19,6 @@ PAGE_FILES = [
     "pages/insights.py",
     "pages/model_performance.py",
     "pages/about.py",
-    "pages/contact.py",
 ]
 
 

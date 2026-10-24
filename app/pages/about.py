@@ -70,17 +70,20 @@ timeline_steps = [
     ("06", "Explainability", "SHAP values explain individual predictions in the Predictor tool, not just global feature importance."),
     ("07", "This app", "A Streamlit interface so the model is usable without touching code."),
 ]
-timeline_html = '<div class="timeline">'
+timeline_items = []
 for i, (num, title, body) in enumerate(timeline_steps):
     delay = f"{i * 0.08:.2f}s"
-    timeline_html += f"""
-    <div class="timeline-item" style="animation-delay:{delay};">
-      <div class="timeline-meta">Step {num}</div>
-      <h4>{title}</h4>
-      <p>{body}</p>
-    </div>
-    """
-timeline_html += "</div>"
+    timeline_items.append(
+        f'<div class="timeline-item" style="animation-delay:{delay};">'
+        f'<div class="timeline-meta">Step {num}</div>'
+        f"<h4>{title}</h4>"
+        f"<p>{body}</p>"
+        f"</div>"
+    )
+# Built as a single line (no blank lines, no leading indentation) because
+# Streamlit's markdown parser drops into literal code-block rendering for
+# any content after a blank line breaks an in-progress raw HTML block.
+timeline_html = '<div class="timeline">' + "".join(timeline_items) + "</div>"
 st.markdown(timeline_html, unsafe_allow_html=True)
 
 section_header.render("Tech stack", "Built with", center=False)

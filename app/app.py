@@ -32,7 +32,6 @@ pages = [
         url_path="model-performance",
     ),
     st.Page("pages/about.py", title="About", icon=":material/info:", url_path="about"),
-    st.Page("pages/contact.py", title="Contact", icon=":material/mail:", url_path="contact"),
 ]
 
 navigation = st.navigation(pages, position="top")

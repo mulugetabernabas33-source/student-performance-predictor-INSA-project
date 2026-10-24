@@ -47,7 +47,6 @@ A multipage Streamlit app (`app/`) turns the model into an actual tool rather th
 - **Insights** — an interactive, filterable Plotly dashboard of the EDA findings (by sex, school, study time).
 - **Model Performance** — cross-validation leaderboards, ROC curves, confusion matrices, and the Scenario A vs. B comparison with an explanation of the leakage decision.
 - **About** — project story, dataset citation, a methodology timeline, tech stack, and a limitations/ethics section.
-- **Contact** — author info, links, and a local-only feedback form (nothing is sent or stored).
 
 The Home page opens on a dark, gradient hero ("Know which students need support — before the
 first grade exists") over softly animated blurred shapes, with a "Try the predictor" button and
@@ -90,7 +89,7 @@ student-performance-predictor/
 │   │   └── style.css            # all app styling (design system, animations)
 │   ├── components/              # hero, metric_card, section_header, footer
 │   ├── utils/                   # theme loader, cached data/model loaders, icons, form options
-│   └── pages/                   # home, predictor, insights, model_performance, about, contact
+│   └── pages/                   # home, predictor, insights, model_performance, about
 └── tests/
     └── test_pipeline.py         # data loads, pipeline fits, model + classifier predict
 ```
