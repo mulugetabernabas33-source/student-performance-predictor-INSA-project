@@ -1,6 +1,5 @@
 """Evaluation utilities for the fitted student grade prediction pipeline."""
 
-from pathlib import Path
 
 import numpy as np
 import pandas as pd

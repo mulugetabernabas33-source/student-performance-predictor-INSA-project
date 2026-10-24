@@ -4,7 +4,6 @@ from pathlib import Path
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from src.data import PROCESSED_DATA_DIR, load_raw_data
